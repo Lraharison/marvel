@@ -1,0 +1,24 @@
+<div class="card text-center">
+  <div class="card-body">
+    <ul class="pagination">
+      <li *ngIf="currentPage===1" class="page-item disabled">
+        <a>«Prev</a>
+      </li>
+      <li *ngIf="currentPage > 1" class="page-item">
+        <a class="page-link" (click)="onClickPage(currentPage - 1)"></a>
+      </li>
+
+      <li class="page-item" *ngFor="let p of pageNumbers;trackBy: trackByFn"
+          [ngClass]="{'page-item active': currentPage===p, 'page-item': currentPage!=p}"><a
+        class="page-link" (click)="onClickPage(p)">{{p}}</a></li>
+
+
+      <li *ngIf="currentPage===pageNumbers.length" class="page-item disabled">
+        <a>Next»</a>
+      </li>
+      <li *ngIf="currentPage < pageNumbers.length" class="page-item">
+        <a class="page-link" (click)="onClickPage(currentPage+1)">Next»</a>
+      </li>
+    </ul>
+  </div>
+</div>
