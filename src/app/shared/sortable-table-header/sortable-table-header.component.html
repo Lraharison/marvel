@@ -1,0 +1,4 @@
+<th *ngFor="let column of columns" (click)="sort(column)">
+  {{column.name}}
+  <fa-icon [icon]="['fas', 'sort-amount-up']"></fa-icon>
+</th>

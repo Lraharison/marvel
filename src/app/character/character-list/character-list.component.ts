@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CharacterService } from '../../core/services/character.service';
 import { Characters } from '../../core/models/characters';
+import { SortableColumn } from '../../shared/sortable-table-header/sortable-column';
 
 @Component({
   selector: 'app-character-list',
@@ -9,6 +10,7 @@ import { Characters } from '../../core/models/characters';
   styleUrls: ['./character-list.component.scss']
 })
 export class CharacterListComponent implements OnInit {
+  columns: SortableColumn[] = [new SortableColumn('Id', true), new SortableColumn('Name', true), new SortableColumn('Image', false)];
   private limit: number;
 
   private characters: Characters;
@@ -30,5 +32,9 @@ export class CharacterListComponent implements OnInit {
 
   trackByFn(index): number {
     return index;
+  }
+
+  sortPage(column: SortableColumn): void {
+    console.log(column);
   }
 }

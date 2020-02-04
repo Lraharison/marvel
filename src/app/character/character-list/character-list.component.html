@@ -1,9 +1,6 @@
-<table class="table table-striped">
+<table class="table table-striped table-bordered">
   <thead>
-  <tr>
-    <th scope="col">Id</th>
-    <th scope="col">Name</th>
-    <th scope="col">Image</th>
+  <tr sortableTableHeader [columns]="columns" (sortedColumnEventEmitter)="sortPage($event)">
   </tr>
   </thead>
   <tbody>
