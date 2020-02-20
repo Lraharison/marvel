@@ -10,10 +10,11 @@ import { SortableColumn } from '../../shared/sortable-table-header/sortable-colu
   styleUrls: ['./character-list.component.scss']
 })
 export class CharacterListComponent implements OnInit {
-  columns: SortableColumn[] = [new SortableColumn('Id', true), new SortableColumn('Name', true), new SortableColumn('Image', false)];
+  columns: SortableColumn[] = [new SortableColumn('Id', false), new SortableColumn('Name', true), new SortableColumn('Image', false)];
   private limit: number;
 
   private characters: Characters;
+  private sortableColumn: SortableColumn;
 
   constructor(
     private readonly characterService: CharacterService,
@@ -25,7 +26,7 @@ export class CharacterListComponent implements OnInit {
   }
 
   loadPage(page: number): void {
-    this.characterService.getCharacters((page - 1) * CharacterService.limit).subscribe(characters => {
+    this.characterService.getCharacters((page - 1) * CharacterService.limit, this.sortableColumn).subscribe(characters => {
       this.characters = characters;
     });
   }
@@ -35,6 +36,7 @@ export class CharacterListComponent implements OnInit {
   }
 
   sortPage(column: SortableColumn): void {
-    console.log(column);
+    this.sortableColumn = column;
+    this.loadPage(1);
   }
 }

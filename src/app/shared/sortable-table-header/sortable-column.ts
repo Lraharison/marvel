@@ -20,7 +20,7 @@ export class SortableColumn {
           this.direction = Direction.ASC;
           break;
         default:
-          this.direction = Direction.ASC;
+          this.direction = Direction.DESC;
       }
     }
   }
